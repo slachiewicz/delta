@@ -1181,6 +1181,10 @@ lazy val kernelDefaults = (project in file("kernel/kernel-defaults"))
       "junit" % "junit" % "4.13.2" % "test",
       "commons-io" % "commons-io" % "2.8.0" % "test",
       "com.novocode" % "junit-interface" % "0.11" % "test",
+      "org.junit.jupiter" % "junit-jupiter-api" % "5.11.4" % "test",
+      "org.junit.jupiter" % "junit-jupiter-engine" % "5.11.4" % "test",
+      "org.junit.jupiter" % "junit-jupiter-params" % "5.11.4" % "test",
+      "com.github.sbt.junit" % "jupiter-interface" % "0.17.0" % "test",
       "org.apache.logging.log4j" % "log4j-slf4j-impl" % "2.25.3" % "test",
       "org.apache.logging.log4j" % "log4j-core" % "2.25.3" % "test",
       // JMH dependencies allow writing micro-benchmarks for testing performance of components.
@@ -1197,6 +1201,7 @@ lazy val kernelDefaults = (project in file("kernel/kernel-defaults"))
       "org.apache.spark" %% "spark-core" % sparkVersionForKernelTest % "test" classifier "tests",
       "org.apache.spark" %% "spark-catalyst" % sparkVersionForKernelTest % "test" classifier "tests",
     ),
+    Test / testOptions += Tests.Argument(TestFrameworks.JUnit, "-v", "-a"),
     MultiShardMultiJVMTestParallelization.settings,
     javaCheckstyleSettings("dev/kernel-checkstyle.xml"),
       // Unidoc settings
